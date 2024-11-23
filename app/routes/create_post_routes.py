@@ -10,9 +10,8 @@ def create_post():
     if request.method == 'POST':
         data = request.get_json()
 
-        if not data.get('title') or not data.get('content') or not data.get('orga_id') or not data.get('city_part_id'):
         # Check if required fields are present
-        if not all(key in data for key in ['title', 'content', 'orga_id']):
+        if not all(key in data for key in ['title', 'content', 'orga_id', 'city_part_id']):
             return jsonify({"error": "Missing required fields"}), 400
 
         # Extract city part
