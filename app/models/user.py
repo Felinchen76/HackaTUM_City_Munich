@@ -12,7 +12,7 @@ class User(db.Model):
     radius_preference = db.Column(db.Integer, default=0)  # 0: inform about nothing, 1: own city part, 2: own city part and neighbors
 
 
-    def __init__(self, name, surname, email, password):
+    def __init__(self, name, surname, telegram_id, password):
         self.name = name
         self.surname = surname
         self.telegram_id = telegram_id

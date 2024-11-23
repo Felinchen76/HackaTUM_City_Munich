@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@
             const postData = {
                 title: title,
                 content: content,
-                orga_id: orga_id
+                orga_id: orga_id,
                 category: category
 
             };
@@ -38,22 +39,23 @@
                 },
                 body: JSON.stringify(postData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message); // message everything worked out
-                    window.location.href = "/"; // if everything worked get send to another page
-                } else {
-                    alert("Fehler: " + data.error);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert("an error occured while creating the user");
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message); // message everything worked out
+                        window.location.href = "/"; // if everything worked get send to another page
+                    } else {
+                        alert("Fehler: " + data.error);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("an error occured while creating the user");
+                });
         }
     </script>
 </head>
+
 <body>
     <h1>create new post</h1>
 
@@ -73,4 +75,5 @@
         <button type="submit">create post</button>
     </form>
 </body>
+
 </html>

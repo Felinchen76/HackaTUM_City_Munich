@@ -14,7 +14,7 @@ def add_user():
         data = request.get_json()  # Get JSON data from the incoming request
 
         # Check if all required fields are present
-        if not data.get('name') or not data.get('surname') or not data.get('email') or not data.get('password') or not data.get('city_part_id') or not data.get('radius_preference'):
+        if not data.get('name') or not data.get('surname') or not data.get('telegram_id') or not data.get('password') or not data.get('city_part_id') or not data.get('radius_preference'):
             return jsonify({"error": "Missing required fields"}), 400
 
         # Hash the password for security
@@ -28,7 +28,7 @@ def add_user():
         new_user = User(
             name=data['name'],
             surname=data['surname'],
-            email=data['email'],
+            telegram_id=data['telegram_id'],
             password=hashed_password,
             city_part_id = city_part_id,
             radius_preference = radius_preference
@@ -50,7 +50,7 @@ def add_user():
     elif request.method == 'GET':
     # Handle GET request, for example, return a list of users or a message
         #users = User.query.all()  # Fetch all users from the database
-        #user_list = [{"name": user.name, "surname": user.surname, "email": user.email} for user in users]
+        #user_list = [{"name": user.name, "surname": user.surname, "telegram_id": user.telegram_id} for user in users]
 
             # You can also return a general message or status
         #return jsonify({

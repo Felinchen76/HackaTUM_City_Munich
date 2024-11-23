@@ -1,3 +1,5 @@
+
+DROP DATABASE IF EXISTS user_management_db_hackatum;
 CREATE DATABASE IF NOT EXISTS user_management_db_hackatum;
 
 USE user_management_db_hackatum;
@@ -17,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
 	surname VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    telegram_id BIGINT UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -47,6 +49,24 @@ CREATE TABLE IF NOT EXISTS categories (
     name VARCHAR(255) UNIQUE
 );
 
+-- link between post and the categories
+CREATE TABLE IF NOT EXISTS post_categories (
+    post_id INT,
+    category_id INT,
+    PRIMARY KEY (post_id, category_id),
+    FOREIGN KEY (post_id) REFERENCES posts(post_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+-- link between the user and his/her interests
+CREATE TABLE IF NOT EXISTS user_interests (
+    user_id INT,
+    category_id INT,
+    PRIMARY KEY (user_id, category_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
 -- Table for the city parts
 CREATE TABLE IF NOT EXISTS city_parts (
     city_part_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -65,23 +85,4 @@ CREATE TABLE IF NOT EXISTS city_part_neighbors (
     FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id),
     FOREIGN KEY (neighbor_id) REFERENCES city_parts(city_part_id),
     PRIMARY KEY (city_part_id, neighbor_id)
-);
-
--- link between post and the categories
-CREATE TABLE IF NOT EXISTS post_categories (
-    post_id INT,
-    category_id INT,
-    PRIMARY KEY (post_id, category_id),
-    FOREIGN KEY (post_id) REFERENCES posts(post_id),
-    FOREIGN KEY (category_id) REFERENCES categories(category_id)
-);
-
-
--- link between the user and his/her interests
-CREATE TABLE IF NOT EXISTS user_interests (
-    user_id INT,
-    category_id INT,
-    PRIMARY KEY (user_id, category_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
