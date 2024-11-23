@@ -13,7 +13,7 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
-    categories = db.relationship('Category', secondary='post_categories', backref='posts')
+    categories = db.relationship('Category', secondary='post_categories', back_populates='posts')
 
 
     def __init__(self, title, content, orga_id):

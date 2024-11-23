@@ -17,7 +17,11 @@ def index():
     else:
         print("Kein Benutzer gefunden.")  ####dummy####  einfach dann die ersten 10 Einträge zeigen
     user_interests = UserInterest.query.filter_by(user_id=user.user_id).all()
+    for interest in user_interests:
+        print(interest.user_id, interest.category_id)
     category_ids = [interest.category_id for interest in user_interests]
+    for category in category_ids:
+        print(category)
 
     posts_for_user = Post.query.join(PostCategory).join(Category).filter(
         Category.category_id.in_(category_ids)

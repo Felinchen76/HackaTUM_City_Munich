@@ -25,6 +25,8 @@ def add_user():
             name=data['name'],
             surname=data['surname'],
             email=data['email'],
+            #adresse
+            #radius
             password=hashed_password
         )
 
