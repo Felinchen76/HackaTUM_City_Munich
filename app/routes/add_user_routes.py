@@ -14,18 +14,24 @@ def add_user():
         data = request.get_json()  # Get JSON data from the incoming request
 
         # Check if all required fields are present
-        if not data.get('name') or not data.get('surname') or not data.get('email') or not data.get('password'):
+        if not data.get('name') or not data.get('surname') or not data.get('email') or not data.get('password') or not data.get('city_part_id') or not data.get('radius_preference'):
             return jsonify({"error": "Missing required fields"}), 400
 
         # Hash the password for security
         hashed_password = generate_password_hash(data['password'], method='pbkdf2')
+
+        # Extract city part and radius preference
+        city_part_id = data.get('city_part_id', None)
+        radius_preference = data.get('radius_preference', 0)
 
         # Create a new User instance
         new_user = User(
             name=data['name'],
             surname=data['surname'],
             email=data['email'],
-            password=hashed_password
+            password=hashed_password,
+            city_part_id = city_part_id,
+            radius_preference = radius_preference
         )
 
         try:

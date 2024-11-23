@@ -11,6 +11,8 @@ class Post(db.Model):
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    city_part_id = db.Column(db.Integer, db.ForeignKey('city_parts.city_part_id'), nullable=False)
+
 
 
     categories = db.relationship('Category', secondary='post_categories', backref='posts')
@@ -34,6 +36,12 @@ class Post(db.Model):
             Category.category_id.in_([category.category_id for category in self.categories])
             # Filter filter for category of post
         ).all()
+
+        #depending on user's preference they will get informed about events in their city part/neighboring city parts regardless of their categories too
+        for user in User.query.filter(User.city_part_id.isnot(None)).all():
+            relevant_city_parts = get_relevant_city_parts(user)
+            if self.city_part_id in relevant_city_parts:
+                matching_users.append(user)
 
         for user in matching_users:
             print(f"User {user.name} should be notified about new post: {self.title}")

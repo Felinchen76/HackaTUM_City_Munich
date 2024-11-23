@@ -47,6 +47,26 @@ CREATE TABLE IF NOT EXISTS categories (
     name VARCHAR(255) UNIQUE
 );
 
+-- Table for the city parts
+CREATE TABLE IF NOT EXISTS city_parts (
+    city_part_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Add a column in the posts table for city part reference
+ALTER TABLE posts 
+ADD COLUMN city_part_id INT,
+ADD FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id);
+
+-- Mapping of neighboring city parts
+CREATE TABLE IF NOT EXISTS city_part_neighbors (
+    city_part_id INT,
+    neighbor_id INT,
+    FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id),
+    FOREIGN KEY (neighbor_id) REFERENCES city_parts(city_part_id),
+    PRIMARY KEY (city_part_id, neighbor_id)
+);
+
 -- link between post and the categories
 CREATE TABLE IF NOT EXISTS post_categories (
     post_id INT,
@@ -55,6 +75,7 @@ CREATE TABLE IF NOT EXISTS post_categories (
     FOREIGN KEY (post_id) REFERENCES posts(post_id),
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
+
 
 -- link between the user and his/her interests
 CREATE TABLE IF NOT EXISTS user_interests (

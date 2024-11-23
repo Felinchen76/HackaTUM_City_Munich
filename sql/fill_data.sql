@@ -273,4 +273,69 @@ VALUES
     (24, 48),
     (25, 49),
     (25, 50);
+
+INSERT INTO city_parts (name)
+VALUES 
+    ('Altstadt-Lehel'),
+    ('Ludwigsvorstadt-Isarvorstadt'),
+    ('Maxvorstadt'),
+    ('Schwabing-West'),
+    ('Schwabing-Freimann'),
+    ('Neuhausen-Nymphenburg'),
+    ('Sendling'),
+    ('Sendling-Westpark'),
+    ('Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln'),
+    ('Hadern'),
+    ('Pasing-Obermenzing'),
+    ('Aubing-Lochhausen-Langwied'),
+    ('Moosach'),
+    ('Milbertshofen-Am Hart'),
+    ('Bogenhausen'),
+    ('Berg am Laim'),
+    ('Trudering-Riem'),
+    ('Ramersdorf-Perlach'),
+    ('Obergiesing-Fasangarten'),
+    ('Untergiesing-Harlaching');
+
+-- Neighbor relationships for city parts
+INSERT INTO city_part_neighbors (city_part_id, neighbor_id)
+VALUES
+    (1, 2),  -- Altstadt-Lehel and Ludwigsvorstadt-Isarvorstadt are neighbors
+    (2, 1),  -- Ludwigsvorstadt-Isarvorstadt and Altstadt-Lehel are neighbors
+    (2, 3),  -- Ludwigsvorstadt-Isarvorstadt and Maxvorstadt are neighbors
+    (3, 2),  -- Maxvorstadt and Ludwigsvorstadt-Isarvorstadt are neighbors
+    (3, 4),  -- Maxvorstadt and Schwabing-West are neighbors
+    (4, 3),  -- Schwabing-West and Maxvorstadt are neighbors
+    (4, 5),  -- Schwabing-West and Schwabing-Freimann are neighbors
+    (5, 4),  -- Schwabing-Freimann and Schwabing-West are neighbors
+    (5, 6),  -- Schwabing-Freimann and Neuhausen-Nymphenburg are neighbors
+    (6, 5),  -- Neuhausen-Nymphenburg and Schwabing-Freimann are neighbors
+    (6, 7),  -- Neuhausen-Nymphenburg and Sendling are neighbors
+    (7, 6),  -- Sendling and Neuhausen-Nymphenburg are neighbors
+    (7, 8),  -- Sendling and Sendling-Westpark are neighbors
+    (8, 7),  -- Sendling-Westpark and Sendling are neighbors
+    (8, 9),  -- Sendling-Westpark and Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln are neighbors
+    (9, 8),  -- Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln and Sendling-Westpark are neighbors
+    (9, 10), -- Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln and Hadern are neighbors
+    (10, 9), -- Hadern and Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln are neighbors
+    (10, 11), -- Hadern and Pasing-Obermenzing are neighbors
+    (11, 10), -- Pasing-Obermenzing and Hadern are neighbors
+    (11, 12), -- Pasing-Obermenzing and Aubing-Lochhausen-Langwied are neighbors
+    (12, 11), -- Aubing-Lochhausen-Langwied and Pasing-Obermenzing are neighbors
+    (12, 13), -- Aubing-Lochhausen-Langwied and Moosach are neighbors
+    (13, 12), -- Moosach and Aubing-Lochhausen-Langwied are neighbors
+    (13, 14), -- Moosach and Milbertshofen-Am Hart are neighbors
+    (14, 13), -- Milbertshofen-Am Hart and Moosach are neighbors
+    (14, 15), -- Milbertshofen-Am Hart and Bogenhausen are neighbors
+    (15, 14), -- Bogenhausen and Milbertshofen-Am Hart are neighbors
+    (15, 16), -- Bogenhausen and Berg am Laim are neighbors
+    (16, 15), -- Berg am Laim and Bogenhausen are neighbors
+    (16, 17), -- Berg am Laim and Trudering-Riem are neighbors
+    (17, 16), -- Trudering-Riem and Berg am Laim are neighbors
+    (17, 18), -- Trudering-Riem and Ramersdorf-Perlach are neighbors
+    (18, 17), -- Ramersdorf-Perlach and Trudering-Riem are neighbors
+    (18, 19), -- Ramersdorf-Perlach and Obergiesing-Fasangarten are neighbors
+    (19, 18), -- Obergiesing-Fasangarten and Ramersdorf-Perlach are neighbors
+    (19, 20), -- Obergiesing-Fasangarten and Untergiesing-Harlaching are neighbors
+    (20, 19); -- Untergiesing-Harlaching and Obergiesing-Fasangarten are neighbors
 SET foreign_key_checks = 1;

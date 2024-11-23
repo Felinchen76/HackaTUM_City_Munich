@@ -13,13 +13,17 @@ def create_post():
     if request.method == 'POST':
         data = request.get_json()
 
-        if not data.get('title') or not data.get('content') or not data.get('orga_id'):
+        if not data.get('title') or not data.get('content') or not data.get('orga_id') or not data.get('city_part_id'):
             return jsonify({"error": "Missing required fields"}), 400
+
+        # Extract city part
+        city_part_id = data.get('city_part_id', None)
 
         new_post = Post(
             title=data['title'],
             content=data['content'],
-            orga_id=data['orga_id']
+            orga_id=data['orga_id'],
+            city_part_id=city_part_id
         )
 
         try:
