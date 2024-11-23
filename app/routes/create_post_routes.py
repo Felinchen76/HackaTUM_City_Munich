@@ -1,22 +1,26 @@
 from flask import Blueprint, request, jsonify, render_template
 from ..models import db
-from werkzeug.security import generate_password_hash  # For password hashing
-
-# Define the Blueprint for user creation route
 from ..models.post import Post
+from ..models.organization import Organization  # Import Organization
 
 create_post_routes = Blueprint('create_post_routes', __name__)
 
-# Route for creating a post
 @create_post_routes.route('/create_post', methods=['POST', 'GET'])
 def create_post():
     if request.method == 'POST':
         data = request.get_json()
         print(data)
 
-        if not data.get('title') or not data.get('content') or not data.get('orga_id'):
+        # Check if required fields are present
+        if not all(key in data for key in ['title', 'content', 'orga_id']):
             return jsonify({"error": "Missing required fields"}), 400
 
+        # Validate orga_id
+        organization = Organization.query.get(data['orga_id'])
+        if not organization:
+            return jsonify({"error": "Invalid orga_id"}), 400
+
+        # Create new post
         new_post = Post(
             title=data['title'],
             content=data['content'],
@@ -32,7 +36,7 @@ def create_post():
             return response, 201
         except Exception as e:
             db.session.rollback()
-            return jsonify({"error": str(e)}), 500
+            return jsonify({"error": f"Error: {str(e)}"}), 500
 
     elif request.method == 'GET':
         return render_template('create_post.html')

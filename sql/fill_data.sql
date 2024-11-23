@@ -18,8 +18,8 @@ ALTER TABLE users AUTO_INCREMENT = 1;
 
 INSERT INTO users (name, surname, telegram_id, password)
 VALUES 
-    ('fehli', 'Doe', 7098929783, 'password123'),  -- explizite Telegram-ID
-    ('Jane', 'Smith', NULL, 'abc123'),             -- keine Telegram-ID
+    ('John', 'Doe', 7098929783, 'password123'),
+    ('Jane', 'Smith', NULL, 'abc123'),
     ('Michael', 'Johnson', NULL, 'qwerty'),
     ('Emily', 'Williams', NULL, 'letmein'),
     ('David', 'Brown', NULL, '123456789'),
@@ -65,7 +65,6 @@ VALUES
     ('Nathaniel', 'Flores', NULL, '123abc456'),
     ('Grace', 'Simmons', NULL, 'whatsup2023');
 
-
     INSERT INTO posts (orga_id, title, content) VALUES
 (1, 'Post Title 1', 'This is the content of the first post.'),
 (2, 'Post Title 2', 'This is the content of the second post.'),
@@ -109,15 +108,7 @@ VALUES
 (40, 'Post Title 40', 'This is the content of the fortieth post.'),
 (41, 'Post Title 41', 'This is the content of the forty-first post.'),
 (42, 'Post Title 42', 'This is the content of the forty-second post.'),
-(43, 'Post Title 43', 'This is the content of the forty-third post.'),
-(44, 'Post Title 44', 'This is the content of the forty-fourth post.'),
-(45, 'Post Title 45', 'This is the content of the forty-fifth post.'),
-(46, 'Post Title 46', 'This is the content of the forty-sixth post.'),
-(47, 'Post Title 47', 'This is the content of the forty-seventh post.'),
-(48, 'Post Title 48', 'This is the content of the forty-eighth post.'),
-(49, 'Post Title 49', 'This is the content of the forty-ninth post.'),
-(50, 'Post Title 50', 'This is the content of the fiftieth post.');
-
+(43, 'Post Title 43', 'This is the content of the forty-third post.');
 
 -- Dummy Daten für die Organizations Tabelle
 INSERT INTO organizations (name, email, password)
