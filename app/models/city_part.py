@@ -1,5 +1,4 @@
 from . import db
-from .models import CityPartNeighbor
 
 class CityPart(db.Model):
     __tablename__ = 'city_parts'

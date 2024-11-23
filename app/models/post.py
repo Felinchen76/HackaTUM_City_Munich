@@ -4,7 +4,7 @@ from playsound import playsound
 from .user import User
 from .user_interest import UserInterest
 from .category import Category
-from .user import get_relevant_city_parts
+from .city_part import get_relevant_city_parts
 
 class Post(db.Model):
     __tablename__ = 'posts'
