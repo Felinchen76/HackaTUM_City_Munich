@@ -44,22 +44,6 @@ CREATE TABLE IF NOT EXISTS users (
     city_part_id INT,
     radius_preference INT DEFAULT 1,
     FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id)
-);
-    orga_id INT AUTO_INCREMENT PRIMARY KEY,           -- Primärschlüssel (Auto-Inkrement)
-    name VARCHAR(100) NOT NULL,                        -- Name der Organisation
-    email VARCHAR(100) NOT NULL UNIQUE,                -- E-Mail der Organisation, muss einzigartig sein
-    password VARCHAR(255) NOT NULL,                    -- Passwort der Organisation
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP    -- Zeitstempel, wenn der Datensatz erstellt wird
-) ENGINE=InnoDB;
-
--- Tabelle für Benutzer erstellen
-CREATE TABLE IF NOT EXISTS users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,           -- Primärschlüssel (Auto-Inkrement)
-    name VARCHAR(100) NOT NULL,                        -- Vorname des Benutzers
-    surname VARCHAR(100) NOT NULL,                     -- Nachname des Benutzers
-    telegram_id BIGINT UNIQUE,                        -- Telegram ID, muss einzigartig sein
-    password VARCHAR(255) NOT NULL,                    -- Passwort des Benutzers
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP    -- Zeitstempel, wenn der Datensatz erstellt wird
 ) ENGINE=InnoDB;
 
 -- Tabelle für Posts erstellen
@@ -72,13 +56,6 @@ CREATE TABLE IF NOT EXISTS posts (
     city_part_id INT,
     FOREIGN KEY (orga_id) REFERENCES organizations(orga_id),
     FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id)
-);
-    post_id INT PRIMARY KEY AUTO_INCREMENT,           -- Primärschlüssel (Auto-Inkrement)
-    orga_id INT,                                      -- Fremdschlüssel, der auf die Organisation verweist
-    title VARCHAR(255),                               -- Titel des Posts
-    content TEXT,                                     -- Inhalt des Posts
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   -- Zeitstempel, wann der Post erstellt wurde
-    FOREIGN KEY (orga_id) REFERENCES organizations(orga_id) ON DELETE CASCADE -- Verknüpfung zu Organisationen
 ) ENGINE=InnoDB;
 
 -- Tabelle für Kategorien erstellen
