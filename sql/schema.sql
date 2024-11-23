@@ -19,7 +19,7 @@ FLUSH PRIVILEGES;
 CREATE TABLE IF NOT EXISTS city_parts (
     city_part_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL UNIQUE
-);
+)ENGINE=InnoDB;
 
 -- table for the organizations
 -- Tabelle für Organisationen erstellen
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS organizations (
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     verified BOOLEAN DEFAULT FALSE
-);
+)ENGINE=InnoDB;
 
 
 -- table for the users
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS user_interests (
     PRIMARY KEY (user_id, category_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
-);
+)ENGINE=InnoDB;
 
 
 
