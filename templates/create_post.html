@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +14,12 @@
             const content = document.getElementById("content").value;
             const orga_id = document.getElementById("orga_id").value;
             const category = document.getElementById("category").value;
+            const city_part_id = document.getElementById("city_part_id").value;
 
 
             //TO DO check whether ID is valid
             // proof if everything is filled out
-            if (!title || !content || !orga_id) {
+            if (!title || !content || !orga_id || !city_part_id) {
                 alert("field missing");
                 return;
             }
@@ -27,7 +29,8 @@
                 title: title,
                 content: content,
                 orga_id: orga_id,
-                category: category
+                category: category,
+                city_part_id: city_part_id
 
             };
 
@@ -38,22 +41,23 @@
                 },
                 body: JSON.stringify(postData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message); // message everything worked out
-                    window.location.href = "/"; // if everything worked get send to another page
-                } else {
-                    alert("Fehler: " + data.error);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert("an error occured while creating the post");
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message); // message everything worked out
+                        window.location.href = "/"; // if everything worked get send to another page
+                    } else {
+                        alert("Fehler: " + data.error);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("an error occured while creating the user");
+                });
         }
     </script>
 </head>
+
 <body>
     <h1>create new post</h1>
 
@@ -70,7 +74,11 @@
         <label for="orga_id">orga_id:</label>
         <input type="orga_id" id="orga_id" name="orga_id" required><br><br>
 
+        <label for="city_part_id">city_part_id:</label>
+        <input type="city_part_id" id="city_part_id" name="city_part_id" required><br><br>
+
         <button type="submit">create post</button>
     </form>
 </body>
+
 </html>

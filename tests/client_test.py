@@ -6,7 +6,7 @@ URL = "http://localhost:5000/add_user"
 payload = {
     "name": "Max",
     "surname": "Mustermann",
-    "email": "max.mustermann@example.com",
+    "telegram_id": "maxmustermann",
     "password": "securepassword123"
 }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,13 @@
             // gather form data
             const name = document.getElementById("name").value;
             const surname = document.getElementById("surname").value;
-            const email = document.getElementById("email").value;
+            const telegram_id = document.getElementById("telegram_id").value;
             const password = document.getElementById("password").value;
+            const city_part_id = document.getElementById("city_part_id").value;
+            const radius_preference = document.getElementById("radius_preference").value;
 
             // proof if everything is filled out
-            if (!name || !surname || !email || !password) {
+            if (!name || !surname || !telegram_id || !password || !radius_preference) {
                 alert("field missing");
                 return;
             }
@@ -24,8 +27,10 @@
             const userData = {
                 name: name,
                 surname: surname,
-                email: email,
-                password: password
+                telegram_id: telegram_id,
+                password: password,
+                city_part_id: city_part_id,
+                radius_preference: radius_preference
             };
 
             fetch('/add_user', {
@@ -35,40 +40,48 @@
                 },
                 body: JSON.stringify(userData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message); // message everything worked out
-                    window.location.href = "/"; // if everything worked get send to another page
-                } else {
-                    alert("Fehler: " + data.error);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert("an error occured while creating the user");
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message); // message everything worked out
+                        window.location.href = "/"; // if everything worked get send to another page
+                    } else {
+                        alert("Fehler: " + data.error);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("an error occured while creating the user");
+                });
         }
     </script>
 </head>
+
 <body>
     <h1>new user</h1>
 
     <!-- form for user registration -->
     <form onsubmit="submitForm(event)">
         <label for="name">name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="name" id="name" name="name" required><br><br>
 
-<label for="surname">surname:</label>
-        <input type="text" id="surname" name="surname" required><br><br>
+        <label for="surname">surname:</label>
+        <input type="surname" id="surname" name="surname" required><br><br>
 
-        <label for="email">mail:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="telegram_id">telegram id:</label>
+        <input type="telegram_id" id="telegram_id" name="telegram_id" required><br><br>
 
         <label for="password">password:</label>
         <input type="password" id="password" name="password" required><br><br>
 
+        <label for="city_part_id">city_part_id:</label>
+        <input type="city_part_id" id="city_part_id" name="city_part_id" required><br><br>
+
+        <label for="radius_preference">radius_preference:</label>
+        <input type="radius_preference" id="radius_preference" name="radius_preference" required><br><br>
+
         <button type="submit">create user</button>
     </form>
 </body>
+
 </html>

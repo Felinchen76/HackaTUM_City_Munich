@@ -12,3 +12,4 @@ class Organization(db.Model):
 
     # Eine Organisation hat viele Posts (1:n Beziehung)
     posts = db.relationship('Post', back_populates='organization', cascade='all, delete-orphan')
+    verified = db.Column(db.Boolean, default=False)

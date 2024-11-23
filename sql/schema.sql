@@ -1,3 +1,5 @@
+
+DROP DATABASE IF EXISTS user_management_db_hackatum;
 -- Lösche die Datenbank, falls sie bereits existiert, und erstelle sie neu
 DROP DATABASE IF EXISTS user_management_db_hackatum;
 CREATE DATABASE IF NOT EXISTS user_management_db_hackatum;
@@ -14,8 +16,35 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 -- Privilegien neu laden
 FLUSH PRIVILEGES;
 
+-- Table for the city parts
+CREATE TABLE IF NOT EXISTS city_parts (
+    city_part_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- table for the organizations
 -- Tabelle für Organisationen erstellen
 CREATE TABLE IF NOT EXISTS organizations (
+    orga_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- table for the users
+CREATE TABLE IF NOT EXISTS users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+	surname VARCHAR(100) NOT NULL,
+    telegram_id BIGINT UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    city_part_id INT,
+    radius_preference INT DEFAULT 1,
+    FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id)
+);
     orga_id INT AUTO_INCREMENT PRIMARY KEY,           -- Primärschlüssel (Auto-Inkrement)
     name VARCHAR(100) NOT NULL,                        -- Name der Organisation
     email VARCHAR(100) NOT NULL UNIQUE,                -- E-Mail der Organisation, muss einzigartig sein
@@ -35,6 +64,15 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Tabelle für Posts erstellen
 CREATE TABLE IF NOT EXISTS posts (
+    post_id INT PRIMARY KEY AUTO_INCREMENT,
+    orga_id INT,
+    title VARCHAR(255),
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    city_part_id INT,
+    FOREIGN KEY (orga_id) REFERENCES organizations(orga_id),
+    FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id)
+);
     post_id INT PRIMARY KEY AUTO_INCREMENT,           -- Primärschlüssel (Auto-Inkrement)
     orga_id INT,                                      -- Fremdschlüssel, der auf die Organisation verweist
     title VARCHAR(255),                               -- Titel des Posts
@@ -60,6 +98,23 @@ CREATE TABLE IF NOT EXISTS post_categories (
 
 -- Tabelle für die Verknüpfung zwischen Benutzern und ihren Interessen (Kategorien)
 CREATE TABLE IF NOT EXISTS user_interests (
+    user_id INT,
+    category_id INT,
+    PRIMARY KEY (user_id, category_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+
+
+-- Mapping of neighboring city parts
+CREATE TABLE IF NOT EXISTS city_part_neighbors (
+    city_part_id INT,
+    neighbor_id INT,
+    FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id),
+    FOREIGN KEY (neighbor_id) REFERENCES city_parts(city_part_id),
+    PRIMARY KEY (city_part_id, neighbor_id)
+);
     user_id INT,                                      -- Fremdschlüssel, der auf die Benutzer-Tabelle verweist
     category_id INT,                                  -- Fremdschlüssel, der auf die Kategorie-Tabelle verweist
     PRIMARY KEY (user_id, category_id),               -- Kombinierter Primärschlüssel
