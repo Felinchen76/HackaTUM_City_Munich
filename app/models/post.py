@@ -1,5 +1,10 @@
 from datetime import datetime
 from . import db
+from playsound import playsound
+from .user import User
+from .user_interest import UserInterest
+from .category import Category
+from .user import get_relevant_city_parts
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -41,4 +46,12 @@ class Post(db.Model):
                 matching_users.append(user)
 
         for user in matching_users:
+            if user.age > 60:
+                print(f"Notifying elderly user: {user.name}")
+                playsound('old-phone-ringing.mp3')
+
+        for user in matching_users:
             print(f"User {user.name} should be notified about new post: {self.title}")
+
+        # Notify elderly users (over 60) with the ringtone
+        

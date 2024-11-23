@@ -38,11 +38,13 @@ CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
 	surname VARCHAR(100) NOT NULL,
-    telegram_id BIGINT UNIQUE,
+    telegram_id VARCHAR(100) UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     city_part_id INT,
     radius_preference INT DEFAULT 1,
+    birthdate DATE NOT NULL,
+    phone_number BIGINT NOT NULL,
     FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id)
 ) ENGINE=InnoDB;
 

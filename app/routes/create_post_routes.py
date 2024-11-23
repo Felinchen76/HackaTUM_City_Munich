@@ -33,6 +33,8 @@ def create_post():
         try:
             db.session.add(new_post)
             db.session.commit()
+            # Notify users who should be informed about the post (including elderly)
+            new_post.match_with_users()
             response = jsonify({"message": "Post created successfully!"})
             response.headers['Content-Type'] = 'application/json'
             return response, 201
