@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script>
+        // Function to verify an organization
+        function verifyOrganization(orgaId) {
+            fetch(`/admin/verify_organization/${orgaId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message);
+                        location.reload(); // Reload page to refresh pending organizations
+                    } else {
+                        alert("Error: " + data.error);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert("An error occurred while verifying the organization");
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Pending Organizations</h2>
+
+    <!-- Section for pending organizations -->
+    <ul id="pending-organizations">
+        <!-- Example organization (replace with server-rendered content or JS dynamic generation) -->
+        <!-- You can loop through organizations dynamically in your server-side rendering -->
+        <!-- The 'data-orga-id' attribute helps pass the organization ID to the JS function -->
+        {% for orga in organizations %}
+        <li>
+            {{ orga.name }} -
+            <button onclick="verifyOrganization('{{ orga.orga_id }}')">Verify</button>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
