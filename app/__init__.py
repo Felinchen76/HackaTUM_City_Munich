@@ -11,6 +11,8 @@ def create_app():
     # initialize db
     db.init_app(app)
 
+
+
     # register routes
     register_routes(app)
 
