@@ -2,6 +2,16 @@ CREATE DATABASE IF NOT EXISTS user_management_db_hackatum;
 
 USE user_management_db_hackatum;
 
+-- Ändere das Passwort für den root-Benutzer
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+
+-- Berechtigungen für root gewähren
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+
+-- Privilegien neu laden
+FLUSH PRIVILEGES;
+
+
 -- table for the users
 CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
