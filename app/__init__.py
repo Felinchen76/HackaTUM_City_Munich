@@ -4,7 +4,7 @@ from .models import db
 from .routes import register_routes
 
 def create_app():
-    app = Flask(__name__, template_folder='../templates')
+    app = Flask(__name__, template_folder='../templates', static_folder='../static')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost/user_management_db_hackatum'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

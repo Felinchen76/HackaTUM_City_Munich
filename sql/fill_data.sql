@@ -1,4 +1,21 @@
 -- Dummy Daten für die Users Tabelle
+
+SET foreign_key_checks = 0;
+
+DELETE FROM user_interests;
+DELETE FROM post_categories;
+DELETE FROM posts;
+DELETE FROM organizations;
+DELETE FROM categories;
+DELETE FROM users;
+
+ALTER TABLE user_interests AUTO_INCREMENT = 1;
+ALTER TABLE post_categories AUTO_INCREMENT = 1;
+ALTER TABLE posts AUTO_INCREMENT = 1;
+ALTER TABLE organizations AUTO_INCREMENT = 1;
+ALTER TABLE categories AUTO_INCREMENT = 1;
+ALTER TABLE users AUTO_INCREMENT = 1;
+
 INSERT INTO users (name, surname, email, password)
 VALUES 
     ('John', 'Doe', 'john.doe@example.com', 'password123'),
@@ -150,7 +167,7 @@ VALUES
     ('Web Development');
 
 -- Dummy Daten für die Post Categories Tabelle
-INSERT INTO post_categories (post_id, category_id)
+INSERT INTO  post_categories (post_id, category_id)
 VALUES 
     (1, 1),
     (1, 2),
@@ -256,3 +273,4 @@ VALUES
     (24, 48),
     (25, 49),
     (25, 50);
+SET foreign_key_checks = 1;

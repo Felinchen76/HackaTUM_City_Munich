@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, render_template
-from ..models import db, User
+from ..models import db
+from ..models.user import User
 from werkzeug.security import generate_password_hash  # For password hashing
 
 # Define the Blueprint for user creation route
