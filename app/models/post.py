@@ -4,7 +4,7 @@ from playsound import playsound
 from .user import User
 from .user_interest import UserInterest
 from .category import Category
-from .city_part import get_relevant_city_parts
+
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -18,7 +18,7 @@ class Post(db.Model):
 
     categories = db.relationship('Category', secondary='post_categories', back_populates='posts')
     organization = db.relationship('Organization', back_populates='posts')
-    city_part = db.relationship('city_part', backref='posts')
+    #city_part = db.relationship('CityPart', backref='posts')
 
     def __init__(self, title, content, orga_id, city_part_id):
         self.title = title
@@ -31,6 +31,7 @@ class Post(db.Model):
         from user import User
         from user_interest import UserInterest
         from category import Category
+        from .city_part import get_relevant_city_parts
         matching_users = db.session.query(User).join(
             UserInterest, User.user_id == UserInterest.user_id
         ).join(
