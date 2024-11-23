@@ -14,9 +14,11 @@
             const surname = document.getElementById("surname").value;
             const telegram_id = document.getElementById("telegram_id").value;
             const password = document.getElementById("password").value;
+            const city_part_id = document.getElementById("city_part_id").value;
+            const radius_preference = document.getElementById("radius_preference").value;
 
             // proof if everything is filled out
-            if (!name || !surname || !telegram_id || !password) {
+            if (!name || !surname || !telegram_id || !password || !radius_preference) {
                 alert("field missing");
                 return;
             }
@@ -26,7 +28,9 @@
                 name: name,
                 surname: surname,
                 telegram_id: telegram_id,
-                password: password
+                password: password,
+                city_part_id: city_part_id,
+                radius_preference: radius_preference
             };
 
             fetch('/add_user', {
@@ -69,6 +73,12 @@
 
         <label for="password">password:</label>
         <input type="password" id="password" name="password" required><br><br>
+
+        <label for="city_part_id">city_part_id:</label>
+        <input type="city_part_id" id="city_part_id" name="city_part_id" required><br><br>
+
+        <label for="radius_preference">radius_preference:</label>
+        <input type="radius_preference" id="radius_preference" name="radius_preference" required><br><br>
 
         <button type="submit">create user</button>
     </form>

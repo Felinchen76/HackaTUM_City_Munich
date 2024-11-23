@@ -18,10 +18,11 @@ class Post(db.Model):
     categories = db.relationship('Category', secondary='post_categories', backref='posts')
 
 
-    def __init__(self, title, content, orga_id):
+    def __init__(self, title, content, orga_id, city_part_id):
         self.title = title
         self.content = content
         self.orga_id = orga_id
+        self.city_part_id = city_part_id
 
     def match_with_users(self):
         from user import User

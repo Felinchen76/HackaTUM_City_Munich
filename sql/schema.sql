@@ -13,15 +13,10 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 -- Privilegien neu laden
 FLUSH PRIVILEGES;
 
-
--- table for the users
-CREATE TABLE IF NOT EXISTS users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-	surname VARCHAR(100) NOT NULL,
-    telegram_id BIGINT UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- Table for the city parts
+CREATE TABLE IF NOT EXISTS city_parts (
+    city_part_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- table for the organizations
@@ -33,6 +28,20 @@ CREATE TABLE IF NOT EXISTS organizations (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
+-- table for the users
+CREATE TABLE IF NOT EXISTS users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+	surname VARCHAR(100) NOT NULL,
+    telegram_id BIGINT UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    city_part_id INT,
+    radius_preference INT DEFAULT 1,
+    FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id)
+);
+
 -- table for the posts
 CREATE TABLE IF NOT EXISTS posts (
     post_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -40,7 +49,9 @@ CREATE TABLE IF NOT EXISTS posts (
     title VARCHAR(255),
     content TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (orga_id) REFERENCES organizations(orga_id)
+    city_part_id INT,
+    FOREIGN KEY (orga_id) REFERENCES organizations(orga_id),
+    FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id)
 );
 
 -- table for the different categories
@@ -67,16 +78,7 @@ CREATE TABLE IF NOT EXISTS user_interests (
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
--- Table for the city parts
-CREATE TABLE IF NOT EXISTS city_parts (
-    city_part_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL UNIQUE
-);
 
--- Add a column in the posts table for city part reference
-ALTER TABLE posts 
-ADD COLUMN city_part_id INT,
-ADD FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id);
 
 -- Mapping of neighboring city parts
 CREATE TABLE IF NOT EXISTS city_part_neighbors (

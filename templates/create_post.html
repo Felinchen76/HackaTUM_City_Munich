@@ -14,11 +14,12 @@
             const content = document.getElementById("content").value;
             const orga_id = document.getElementById("orga_id").value;
             const category = document.getElementById("category").value;
+            const city_part_id = document.getElementById("city_part_id").value;
 
 
             //TO DO check whether ID is valid
             // proof if everything is filled out
-            if (!title || !content || !orga_id) {
+            if (!title || !content || !orga_id || !city_part_id) {
                 alert("field missing");
                 return;
             }
@@ -28,7 +29,8 @@
                 title: title,
                 content: content,
                 orga_id: orga_id,
-                category: category
+                category: category,
+                city_part_id: city_part_id
 
             };
 
@@ -71,6 +73,9 @@
 
         <label for="orga_id">orga_id:</label>
         <input type="orga_id" id="orga_id" name="orga_id" required><br><br>
+
+        <label for="city_part_id">city_part_id:</label>
+        <input type="city_part_id" id="city_part_id" name="city_part_id" required><br><br>
 
         <button type="submit">create post</button>
     </form>
