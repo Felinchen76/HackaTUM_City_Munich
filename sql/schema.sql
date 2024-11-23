@@ -1,5 +1,4 @@
 
-DROP DATABASE IF EXISTS user_management_db_hackatum;
 -- Lösche die Datenbank, falls sie bereits existiert, und erstelle sie neu
 DROP DATABASE IF EXISTS user_management_db_hackatum;
 CREATE DATABASE IF NOT EXISTS user_management_db_hackatum;
@@ -91,10 +90,4 @@ CREATE TABLE IF NOT EXISTS city_part_neighbors (
     FOREIGN KEY (city_part_id) REFERENCES city_parts(city_part_id),
     FOREIGN KEY (neighbor_id) REFERENCES city_parts(city_part_id),
     PRIMARY KEY (city_part_id, neighbor_id)
-);
-    user_id INT,                                      -- Fremdschlüssel, der auf die Benutzer-Tabelle verweist
-    category_id INT,                                  -- Fremdschlüssel, der auf die Kategorie-Tabelle verweist
-    PRIMARY KEY (user_id, category_id),               -- Kombinierter Primärschlüssel
-    FOREIGN KEY (user_id) REFERENCES users(user_id), -- Verknüpfung zu Benutzern
-    FOREIGN KEY (category_id) REFERENCES categories(category_id) -- Verknüpfung zu Kategorien
 ) ENGINE=InnoDB;
