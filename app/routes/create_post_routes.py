@@ -12,6 +12,7 @@ create_post_routes = Blueprint('create_post_routes', __name__)
 def create_post():
     if request.method == 'POST':
         data = request.get_json()
+        print(data)
 
         if not data.get('title') or not data.get('content') or not data.get('orga_id'):
             return jsonify({"error": "Missing required fields"}), 400
@@ -26,6 +27,7 @@ def create_post():
             db.session.add(new_post)
             db.session.commit()
             response = jsonify({"message": "Post created successfully!"})
+            new_post.match_with_users()
             response.headers['Content-Type'] = 'application/json'
             return response, 201
         except Exception as e:

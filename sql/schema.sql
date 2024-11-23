@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS user_management_db_hackatum;
 
 USE user_management_db_hackatum;
 
+
 -- Ändere das Passwort für den root-Benutzer
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
 
@@ -10,14 +11,33 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
 
 -- Privilegien neu laden
 FLUSH PRIVILEGES;
+SET foreign_key_checks = 0;
 
+-- Lösche alle Daten aus den Tabellen in der richtigen Reihenfolge
+DELETE FROM user_interests;
+DELETE FROM post_categories;
+DELETE FROM posts;
+DELETE FROM categories;
+DELETE FROM organizations;
+DELETE FROM users;
+
+-- Lösche alle Tabellen
+DROP TABLE IF EXISTS user_interests;
+DROP TABLE IF EXISTS post_categories;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS organizations;
+DROP TABLE IF EXISTS users;
+
+-- Setze die Fremdschlüsselüberprüfung wieder in Gang
+SET foreign_key_checks = 1;
 
 -- table for the users
 CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
 	surname VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    telegram_id BIGINT UNIQUE, -- save telegram id
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
