@@ -9,7 +9,7 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     city_part_id = db.Column(db.Integer, db.ForeignKey('city_parts.city_part_id'), nullable=True)
-    radius_preference = db.Column(db.Integer, default=0)  # 0: inform about nothing, 1: own city part, 2: own city part and neighbors
+    radius_preference = db.Column(db.Integer, default=1)  # 0: inform about nothing, 1: own city part, 2: own city part and neighbors
 
 
     def __init__(self, name, surname, telegram_id, password):
