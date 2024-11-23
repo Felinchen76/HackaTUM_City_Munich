@@ -26,7 +26,7 @@
             const postData = {
                 title: title,
                 content: content,
-                orga_id: orga_id
+                orga_id: orga_id,
                 category: category
 
             };
@@ -49,7 +49,7 @@
             })
             .catch((error) => {
                 console.error('Error:', error);
-                alert("an error occured while creating the user");
+                alert("an error occured while creating the post");
             });
         }
     </script>
