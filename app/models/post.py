@@ -1,10 +1,13 @@
 import asyncio
+import os
 from datetime import datetime
 
 from sqlalchemy.orm import aliased
 
 from . import db
 from ..tele_bot import TelegramBot
+
+from playsound import playsound
 
 
 class Post(db.Model):
@@ -81,5 +84,10 @@ class Post(db.Model):
             print(f"Fehler beim Senden der Nachricht an {user.name}: {e}")
 
     def call_users_action(self, user):
-        # initialize bot
-        print("call")
+        # call simulieren. da twilio api zur demo nicht verwendet werden soll
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        mp3_path = os.path.join(base_dir, '..', '..', 'static', 'alert.mp3')
+        if os.path.exists(mp3_path):
+            playsound(mp3_path)
+        else:
+            print(f"Datei nicht gefunden")
