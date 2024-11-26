@@ -1,0 +1,141 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f5f9;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+#newsfeed {
+    background-color: #ffffff;
+    padding: 40px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#newsfeed h2 {
+    text-align: center;
+    color: #2f855a;
+    font-size: 2rem;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.newsItem {
+    min-width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.newsItem h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.newsItem p {
+    color: #666;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#about {
+    padding: 40px 0;
+    background-color: #e6f7e1;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 2rem;
+    color: #2f855a;
+}
+
+#about p {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}

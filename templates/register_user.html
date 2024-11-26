@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KI-Bot Registrierung</title>
+    <script src="../static/bot_user_registration.js" defer></script>
+
+    <style>
+        #chat { border: 1px solid #ccc; padding: 10px; width: 300px; height: 400px; overflow-y: scroll; margin-bottom: 10px; }
+        .user { color: blue; }
+        .bot { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Registrierung über den KI-Bot</h1>
+    <div id="chat"></div>
+    <input type="text" id="user-input" placeholder="Gib deine Nachricht ein">
+    <button onclick="sendMessage()">Senden</button>
+    <div id="confirmation" style="display: none;">
+        <h3>Dein Profil</h3>
+        <p id="profile-summary"></p>
+        <button onclick="confirmProfile()">Bestätigen</button>
+        <button onclick="editProfile()">Bearbeiten</button>
+    </div>
+</body>
+</html>
