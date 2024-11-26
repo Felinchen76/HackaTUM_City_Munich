@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log("form data:", { title, content, orga_id, category });
 
-        if (!title || !content || !orga_id) {
+        if (!title || !content || !orga_id || !category) {
             alert("field missing");
-            console.error("field missing:", { title, content, orga_id });
+            console.error("field missing:", { title, content, orga_id, category });
             return;
         }
 

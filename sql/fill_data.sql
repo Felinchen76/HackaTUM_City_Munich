@@ -2,12 +2,13 @@
 
 SET foreign_key_checks = 0;
 
+SET SQL_SAFE_UPDATES = 0;
+
 DELETE FROM user_interests;
-DELETE FROM post_categories;
-DELETE FROM posts;
+DELETE FROM post_categories; DELETE FROM posts;
 DELETE FROM organizations;
-DELETE FROM categories;
-DELETE FROM users;
+DELETE FROM categories; DELETE FROM users;
+
 
 ALTER TABLE user_interests AUTO_INCREMENT = 1;
 ALTER TABLE post_categories AUTO_INCREMENT = 1;
@@ -16,54 +17,53 @@ ALTER TABLE organizations AUTO_INCREMENT = 1;
 ALTER TABLE categories AUTO_INCREMENT = 1;
 ALTER TABLE users AUTO_INCREMENT = 1;
 
-INSERT INTO users (name, surname, telegram_id, password)
-VALUES 
-    ('John', 'Doe', 7098929783, 'password123'),
-    ('Jane', 'Smith', NULL, 'abc123'),
-    ('Michael', 'Johnson', NULL, 'qwerty'),
-    ('Emily', 'Williams', NULL, 'letmein'),
-    ('David', 'Brown', NULL, '123456789'),
-    ('Laura', 'Jones', NULL, 'sunshine'),
-    ('Daniel', 'Garcia', NULL, 'password1'),
-    ('Sarah', 'Martinez', NULL, 'iloveyou'),
-    ('James', 'Hernandez', NULL, 'hello123'),
-    ('Sophia', 'Lopez', NULL, 'qwertz'),
-    ('William', 'Miller', NULL, 'welcome2023'),
-    ('Olivia', 'Davis', NULL, '123qwe'),
-    ('Ethan', 'Gonzalez', NULL, 'letmein123'),
-    ('Isabella', 'Wilson', NULL, 'ilove123'),
-    ('Benjamin', 'Moore', NULL, 'password987'),
-    ('Charlotte', 'Taylor', NULL, 'securepass'),
-    ('Liam', 'Anderson', NULL, 'iloveyou1'),
-    ('Avery', 'Thomas', NULL, 'admin123'),
-    ('Mason', 'Jackson', NULL, 'qwertyuiop'),
-    ('Amelia', 'White', NULL, 'strongpass2024'),
-    ('Lucas', 'Harris', NULL, 'guest1234'),
-    ('Mia', 'Clark', NULL, 'abc1234'),
-    ('Alexander', 'Lewis', NULL, 'mypassword'),
-    ('Harper', 'Young', NULL, '1234abcd'),
-    ('Henry', 'Allen', NULL, 'secur3pass'),
-    ('Ella', 'King', NULL, 'thebestpassword'),
-    ('Sebastian', 'Scott', NULL, 'ilovemyself'),
-    ('Jack', 'Green', NULL, 'adminpass'),
-    ('Aiden', 'Adams', NULL, 'hello321'),
-    ('Zoe', 'Nelson', NULL, 'greenlight'),
-    ('Matthew', 'Baker', NULL, 'mypass4321'),
-    ('Lily', 'Perez', NULL, 'goodpassword'),
-    ('Samuel', 'Carter', NULL, '12345password'),
-    ('Sophie', 'Mitchell', NULL, 'brightday'),
-    ('Jack', 'Roberts', NULL, 'blackhole'),
-    ('Levi', 'Phillips', NULL, 'p@ssw0rd'),
-    ('Ella', 'Evans', NULL, 'greatpass'),
-    ('Nathan', 'Turner', NULL, 'secure2023'),
-    ('Chloe', 'Collins', NULL, 'passwordx'),
-    ('Isaac', 'Rogers', NULL, 'darknight'),
-    ('Madison', 'Graham', NULL, 'myname123'),
-    ('Dylan', 'Rivera', NULL, 'mypass999'),
-    ('Archer', 'Cooper', NULL, 'mysecurepass'),
-    ('Scarlett', 'Ward', NULL, 'passwordqwert'),
-    ('Nathaniel', 'Flores', NULL, '123abc456'),
-    ('Grace', 'Simmons', NULL, 'whatsup2023');
+INSERT INTO users (name, surname, telegram_id, password, phone_number) VALUES
+ ('John', 'Doe', 7098929783, 'password123', '123-456-7890'),
+ ('Jane', 'Smith', NULL, 'abc123', '123-456-7891'),
+ ('Michael', 'Johnson', NULL, 'qwerty', '123-456-7892'),
+ ('Emily', 'Williams', NULL, 'letmein', '123-456-7893'), 
+ ('David', 'Brown', NULL, '123456789', '123-456-7894'),
+ ('Laura', 'Jones', NULL, 'sunshine', '123-456-7895'),
+ ('Daniel', 'Garcia', NULL, 'password1', '123-456-7896'),
+ ('Sarah', 'Martinez', NULL, 'iloveyou', '123-456-7897'),
+ ('James', 'Hernandez', NULL, 'hello123', '123-456-7898'),
+ ('Sophia', 'Lopez', NULL, 'qwertz', '123-456-7899'),
+ ('William', 'Miller', NULL, 'welcome2023', '123-456-7800'),
+ ('Olivia', 'Davis', NULL, '123qwe', '123-456-7801'),
+ ('Ethan', 'Gonzalez', NULL, 'letmein123', '123-456-7802'),
+ ('Isabella', 'Wilson', NULL, 'ilove123', '123-456-7803'),
+ ('Benjamin', 'Moore', NULL, 'password987', '123-456-7804'),
+ ('Charlotte', 'Taylor', NULL, 'securepass', '123-456-7805'),
+ ('Liam', 'Anderson', NULL, 'iloveyou1', '123-456-7806'),
+ ('Avery', 'Thomas', NULL, 'admin123', '123-456-7807'),
+ ('Mason', 'Jackson', NULL, 'qwertyuiop', '123-456-7808'),
+ ('Amelia', 'White', NULL, 'strongpass2024', '123-456-7809'),
+ ('Lucas', 'Harris', NULL, 'guest1234', '123-456-7810'),
+ ('Mia', 'Clark', NULL, 'abc1234', '123-456-7811'),
+ ('Alexander', 'Lewis', NULL, 'mypassword', '123-456-7812'),
+ ('Harper', 'Young', NULL, '1234abcd', '123-456-7813'),
+ ('Henry', 'Allen', NULL, 'secur3pass', '123-456-7814'),
+ ('Ella', 'King', NULL, 'thebestpassword', '123-456-7815'),
+ ('Sebastian', 'Scott', NULL, 'ilovemyself', '123-456-7816'),
+ ('Jack', 'Green', NULL, 'adminpass', '123-456-7817'),
+ ('Aiden', 'Adams', NULL, 'hello321', '123-456-7818'),
+ ('Zoe', 'Nelson', NULL, 'greenlight', '123-456-7819'),
+ ('Matthew', 'Baker', NULL, 'mypass4321', '123-456-7820'),
+ ('Lily', 'Perez', NULL, 'goodpassword', '123-456-7821'),
+ ('Samuel', 'Carter', NULL, '12345password', '123-456-7822'),
+ ('Sophie', 'Mitchell', NULL, 'brightday', '123-456-7823'),
+ ('Jack', 'Roberts', NULL, 'blackhole', '123-456-7824'),
+ ('Levi', 'Phillips', NULL, 'p@ssw0rd', '123-456-7825'),
+ ('Ella', 'Evans', NULL, 'greatpass', '123-456-7826'),
+ ('Nathan', 'Turner', NULL, 'secure2023', '123-456-7827'),
+ ('Chloe', 'Collins', NULL, 'passwordx', '123-456-7828'),
+ ('Isaac', 'Rogers', NULL, 'darknight', '123-456-7829'),
+ ('Madison', 'Graham', NULL, 'myname123', '123-456-7830'),
+ ('Dylan', 'Rivera', NULL, 'mypass999', '123-456-7831'),
+ ('Archer', 'Cooper', NULL, 'mysecurepass', '123-456-7832'),
+ ('Scarlett', 'Ward', NULL, 'passwordqwert', '123-456-7833'),
+ ('Nathaniel', 'Flores', NULL, '123abc456', '123-456-7834'),
+('Grace', 'Simmons', NULL, 'whatsup2023', '123-456-7835');
 
     INSERT INTO posts (orga_id, title, content) VALUES
 (1, 'Post Title 1', 'This is the content of the first post.'),
@@ -318,4 +318,6 @@ VALUES
     (24, 48),
     (25, 49),
     (25, 50);
+    
 SET foreign_key_checks = 1;
+SET SQL_SAFE_UPDATES = 1;

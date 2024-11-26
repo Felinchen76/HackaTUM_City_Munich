@@ -23,15 +23,16 @@ CREATE TABLE IF NOT EXISTS organizations (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP    -- Zeitstempel, wenn der Datensatz erstellt wird
 ) ENGINE=InnoDB;
 
--- Tabelle für Benutzer erstellen
 CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,           -- Primärschlüssel (Auto-Inkrement)
     name VARCHAR(100) NOT NULL,                        -- Vorname des Benutzers
     surname VARCHAR(100) NOT NULL,                     -- Nachname des Benutzers
     telegram_id BIGINT UNIQUE,                        -- Telegram ID, muss einzigartig sein
+	phone_number VARCHAR(15),                          -- Telefonnummer des Benutzers
     password VARCHAR(255) NOT NULL,                    -- Passwort des Benutzers
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP    -- Zeitstempel, wenn der Datensatz erstellt wird
 ) ENGINE=InnoDB;
+
 
 -- Tabelle für Posts erstellen
 CREATE TABLE IF NOT EXISTS posts (

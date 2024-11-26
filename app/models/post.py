@@ -1,6 +1,7 @@
+import asyncio
 from datetime import datetime
 
-from sqlalchemy import and_
+from sqlalchemy.orm import aliased
 
 from . import db
 from ..tele_bot import TelegramBot
@@ -22,49 +23,63 @@ class Post(db.Model):
         self.content = content
         self.orga_id = orga_id
 
-    def match_with_users(self):
+    def match_with_users(self, category_id):
         from .user import User
         from .user_interest import UserInterest
-        from .category import Category
 
-        print("###########################################")
+        # nutzer mit demselben Interesse filtern wie in dem Post angelegt wurde
+        user_with_interest_query = db.session.query(User).join(
+            UserInterest, User.user_id == UserInterest.user_id).filter(
+            UserInterest.category_id == category_id
+        ).subquery()
+        # Alias damit ich subquery wie tabelle behandeln kann
+        user_with_interest = aliased(User, user_with_interest_query)
 
-        # get categories
-        users_with_interests = db.session.query(User).join(
-            UserInterest, User.user_id == UserInterest.user_id
+        # TODO limit for event invitation
+
+        # TODO check for distance
+
+        # TODO check for message or call
+        # der Einfachheit halber temporär für den Prototyp
+        # check ob Telegram ID hinterlegt ist, wenn ja dann message, sonst call
+        message_users = db.session.query(user_with_interest).filter(
+            User.telegram_id.isnot(None)
         ).all()
-        print(f"Users with interests: {[(u.user_id, u.telegram_id) for u in users_with_interests]}")
-        # category filter
-        category_ids = [category.category_id for category in self.categories]
-        user_interests = db.session.query(UserInterest).filter(
-            UserInterest.category_id.in_(category_ids)
-        ).all()
-        print(user_interests)
-        relevant_users = db.session.query(User).join(
-            UserInterest, User.user_id == UserInterest.user_id
-        ).join(
-            Category, UserInterest.category_id == Category.category_id
-        ).filter(
-            Category.category_id.in_([category.category_id for category in self.categories])
-        ).all()
-        print(f"Relevant users (by category): {[(u.user_id, u.telegram_id) for u in relevant_users]}")
 
-        # Telegram-ID
-        user = db.session.query(User).join(
-            UserInterest, User.user_id == UserInterest.user_id
-        ).join(
-            Category, UserInterest.category_id == Category.category_id
-        ).filter(and_(
-            Category.category_id.in_([category.category_id for category in self.categories]),
-            User.telegram_id == 7098929783
-        )).all()
+        for user in message_users:
+            print(user)
 
-        print(f"Matching users count: {len(user)}")
+        # muss innerhalb der relevanten user filter
+        call_users = db.session.query(user_with_interest).filter(
+            User.phone_number.isnot(None)
+        ).all()
+
+        print(f"anzahl user telegram: {len(message_users)}")
+        print(f"anzahl user call: {len(message_users)}")
+
+        for message_user in message_users:
+            asyncio.run(self.message_users_action(message_user))
+
+        for call_user in call_users:
+            self.call_users_action(call_user)
+
+    async def message_users_action(self, user):
+        import os
+        from dotenv import load_dotenv
+        # load envs
+        load_dotenv()
+        bot_token = os.getenv('BOT_TOKEN')
 
         # initialize bot
-        bot = TelegramBot('7607839281:AAFNEwd7inyHZ4bOaP1L5QpAmX2Zhpx_re0')
+        bot = TelegramBot(bot_token)
 
-        # send message
-        for u in user:
+        try:  # send message
             print(f"User {user.name} sollte über den neuen Post benachrichtigt werden: {self.title}")
-            bot.send_message(user.telegram_id, f"Neuer Post: {self.title}\n{self.content}")
+            response = await bot.send_message(user.telegram_id, f"Neuer Post: {self.title}\n{self.content}")
+            print('Nachricht erfolgreich gesendet:', response)
+        except Exception as e:
+            print(f"Fehler beim Senden der Nachricht an {user.name}: {e}")
+
+    def call_users_action(self, user):
+        # initialize bot
+        print("call")

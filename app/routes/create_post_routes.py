@@ -17,12 +17,14 @@ def render_create_post_form():
 
 @create_post_routes.route('/create_post', methods=['POST'])
 def create_post_action():
+    from ..models.post_category import PostCategory
+    from ..models.category import Category
     try:
         data = request.get_json()
         print(data)
 
         #check for missing data
-        if not all(key in data for key in ['title', 'content', 'orga_id']):
+        if not all(key in data for key in ['title', 'content', 'orga_id', 'category']):
             return jsonify({"error": "Missing required fields"}), 400
         #check for invalid orga
         organization = Organization.query.get(data['orga_id'])
@@ -35,11 +37,26 @@ def create_post_action():
             orga_id=data['orga_id']
         )
 
-        #add new post to db
+        #add new post to db and safe it
         db.session.add(new_post)
         db.session.commit()
+
+        #add new post category
+        latest_id = new_post.post_id
+        category_id = int(data['category']) # Konvertiere die Kategorie-ID in einen Integer
+        print(isinstance(category_id, int))
+        category = db.session.query(Category).filter_by(
+            category_id=category_id).first()
+        if not category: return jsonify({"error": "Invalid category_id"}),400
+        new_post_category = PostCategory( post_id=latest_id, category_id=category_id )
+
+        #write into database
+        db.session.add(new_post_category)
+        db.session.commit()
+
         response = jsonify({"message": "Post created successfully!"})
-        new_post.match_with_users()
+
+        new_post.match_with_users(category_id)
         response.headers['Content-Type'] = 'application/json'
         return response, 201
     except Exception as e:
