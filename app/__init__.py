@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from flask import Flask
 
 from .models import db
@@ -11,6 +13,9 @@ def create_app():
     # load envs
     load_dotenv()
     app = Flask(__name__, template_folder='../templates', static_folder='../static')
+    app.secret_key = 'SECRET_KEY'
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=130)
+
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -19,6 +24,7 @@ def create_app():
 
     # register routes
     register_routes(app)
+
 
     return app
 
