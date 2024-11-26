@@ -4,85 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>create post</title>
-    <script>
-    //frontend für dynamisches befüllen der Kategorien
-    document.addEventListener('DOMContentLoaded', () => {
-    fetch('/get_categories')
-    .then(response => response.json())
-    .then(data => {
-            console.log('45');
-        console.log('Categories data:', data);
-        if (data.error) {
-            console.error('Error loading categories:', data.error);
-            alert("Could not load categories.");
-        } else {
-            const categorySelect = document.getElementById("category");
-            categorySelect.innerHTML = '<option value="" disabled selected>Select a category</option>';
-            data.forEach(category => {
-                const option = document.createElement("option");
-                option.value = category.id;
-                option.textContent = category.name;
-                categorySelect.appendChild(option);
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching categories:', error);
-        alert("Could not load categories.");
-    });
-
-        function submitForm(event) {
-            event.preventDefault();
-
-            // gather form data
-            const title = document.getElementById("title").value;
-            const content = document.getElementById("content").value;
-            const orga_id = document.getElementById("orga_id").value;
-            const category = document.getElementById("category").value;
-
-            // proof if everything is filled out
-            if (!title || !content || !orga_id) {
-                alert("field missing");
-                return;
-            }
-
-            // send api request
-            const postData = {
-                title: title,
-                content: content,
-                orga_id: orga_id,
-                category: category
-
-            };
-
-            fetch('/create_post', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(postData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message); // message everything worked out
-                    window.location.href = "/"; // if everything worked get send to another page
-                } else {
-                    alert("Fehler: " + data.error);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert("an error occured while creating the post");
-            });
-        }
-
-
-    </script>
+    <!--make sure that js is loaded after all the html -->
+    <script src="../static/script.js" defer></script>
 </head>
 <body>
 <h1>create new post</h1>
 
+<!-- fill out form -->
 <form onsubmit="submitForm(event)">
     <label for="title">title:</label>
     <input type="title" id="title" name="title" required><br><br>
@@ -91,17 +19,15 @@
     <input type="content" id="content" name="content" required><br><br>
 
     <label for="category">Category:</label>
-<select id="category" name="category" required>
-    <option value="" disabled selected>Select a category</option>
-    {% for category in categories %}
-        <option value="{{ category.id }}">{{ category.name }}</option>
-    {% endfor %}
-</select>
+    <select id="category" name="category" required>
+        <option value="" disabled selected>Select a category</option>
+    </select>
 
     <label for="orga_id">orga_id:</label>
     <input type="orga_id" id="orga_id" name="orga_id" required><br><br>
 
-    <button type="submit">create post</button>
+    <button id="submit" type="submit">create post</button>
+
 </form>
 </body>
 </html>
