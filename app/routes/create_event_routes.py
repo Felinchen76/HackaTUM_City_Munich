@@ -3,19 +3,19 @@ from ..models import db
 from ..models.post import Post
 from ..models.organization import Organization
 
-create_post_routes = Blueprint('create_post_routes', __name__)
+create_event_routes = Blueprint('create_event_routes', __name__)
 
 
-@create_post_routes.route('/create_post', methods=['GET'])
+@create_event_routes.route('/create_event', methods=['GET'])
 #so the categories are dynamically displayed and there is a fixed selection
 def render_create_post_form():
     from ..models.category import Category
     categories = Category.query.all()
     category_list = [{"id": category.category_id, "name": category.name} for category in categories]
-    return render_template('create_post.html', categories=category_list)
+    return render_template('create_event.html', categories=category_list)
 
 
-@create_post_routes.route('/create_post', methods=['POST'])
+@create_event_routes.route('/create_event', methods=['POST'])
 def create_post_action():
     from ..models.post_category import PostCategory
     from ..models.category import Category
@@ -67,7 +67,7 @@ def create_post_action():
         return jsonify({"error": error_message}), 500
 
 
-@create_post_routes.route('/get_categories')
+@create_event_routes.route('/get_categories')
 def get_categories():
     try:
         #late import against circularity imports

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Seite</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/events.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MUCI.</div>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="user.html">Erstelle Events</a></li>
+                    <li><a href="social.html">Sozial</a></li>
+                    <li><a href="city.html">Stadt</a></li>
+                    <li class="highlight"><a href="login.html">Anmelden</a></li>
+                    <li class="highlight"><a href="register.html">Registrieren</a></li>
+                    <li><a href="logout.html">Abmelden</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="search-section">
+            <input type="text" id="search" placeholder="Nach Events suchen..." oninput="searchEvents()">
+        </section>
+    
+        <section class="carousel">
+            <div class="carousel-container">
+
+                <div class="carousel-item background-item"></div>
+
+                <div class="carousel-item active" data-title="Schachturnier">
+                    <div class="carousel-content">
+                        <img src="assets/Schromi.jpg" alt="Event 1" class="carousel-image">
+                        <div class="carousel-details">
+                            <h2>Schachturnier</h2>
+                            <p>Spiele mit den besten und verbessere deine Schachfähigkeiten!</p>
+                            <div class="carousel-buttons">
+                                <button class="accept-button">Zusagen</button>
+                                <button class="decline-button">Absagen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item background-item" data-title="Hackathon">
+                    <div class="carousel-content">
+                        <img src="assets/Pilz.png" alt="Event 2" class="carousel-image">
+                        <div class="carousel-details">
+                            <h2>Hackathon</h2>
+                            <p>Code deine Ideen in einem spannenden Wettbewerb!</p>
+                            <div class="carousel-buttons">
+                                <button class="accept-button">Zusagen</button>
+                                <button class="decline-button">Absagen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item background-item"></div>
+            </div>
+            <button class="prev">←</button>
+            <button class="next">→</button>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p class="logo">MUCI.</p>
+            <ul class="footer-links">
+                <li><a href="impressum.html">Impressum</a></li>
+                <li><a href="#">Datenschutz</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">X</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../static/rondell.js"></script> 
+    <script src="../static/index.js"></script>
+</body>
+</html>

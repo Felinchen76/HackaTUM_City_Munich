@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+main {
+    padding: 3rem 0;
+}
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #fff;
+}
+
+.login-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-container {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.text-container p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-container {
+    flex: 1;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-style: double;
+    border-color: rgba(14, 197,197, 1);
+}
+
+.form-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: rgb(14, 197, 197);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    color: #0ec5c5;
+}
+
+.form-group label {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgb(14, 197, 197);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: rgb(14, 197, 197);
+    outline: none;
+}
+
+button {
+    background-color: rgb(14, 197, 197);
+    color: #fff;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 30%;
+    margin-left: 22.5rem;
+}
+
+button:hover {
+    background-color: rgb(15, 157, 157);
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-container, .form-container {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}

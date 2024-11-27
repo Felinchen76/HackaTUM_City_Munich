@@ -1,0 +1,101 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: calc(100vh - 80px);
+    padding: 0;
+}
+
+.abmelden-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20%;
+    padding: 0 2rem;
+}
+
+.abmelden-container {
+    margin-top: 60%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin-right: 1rem; 
+}
+
+.abmelden-message {
+    font-size: 2rem;
+    color: #FFDF64;
+}
+
+.login-container {
+    margin-top: 20%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #FFDF64;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+input {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+input:focus {
+    border-color: #FFDF64;
+    outline: none;
+}
+
+button {
+    padding: 1rem;
+    background-color: #FFDF64;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #d1ad1a;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.register-link a {
+    color: #FFDF64;
+    text-decoration: none;
+}

@@ -1,0 +1,128 @@
+.carousel {
+    position: relative;
+    width: 80%;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex; 
+    transition: transform 0.3s ease; 
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+.carousel-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 80%; 
+    padding: 2rem; 
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.carousel-details {
+    text-align: left;
+    flex: 1;
+}
+
+.carousel-details h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.carousel-details p {
+    margin: 0.5rem 0;
+}
+
+.carousel-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.accept-button, .decline-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accept-button {
+    background-color: #FFDF64;
+    color: white;
+}
+
+.decline-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.carousel-item.background-item {
+    min-width: 100%;
+    opacity: 0.5; 
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: scale(0.8); 
+}
+
+.carousel-item.active {
+    transform: translateY(20px); 
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1rem;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.search-section {
+    text-align: left;
+    padding: 1%;
+    margin: 1rem 0;
+}
+
+#search {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    width: 80%;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+#search:focus {
+    border-color: #0d6efd;
+}

@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* Impressum Section */
+.impressum-section {
+    padding: 2rem 0;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.impressum-section h1 {
+    font-size: 2rem;
+    color: #FFDF64;
+    margin-bottom: 1.5rem;
+}
+
+.impressum-section p {
+    margin-bottom: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
