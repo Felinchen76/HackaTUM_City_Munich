@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../static/css/create_event.css">
     <script src="../static/script.js" defer></script>
     <script src="../static/burger_menu.js"></script>
-
 </head>
 <body>
     <header>
@@ -39,7 +38,7 @@
                 <h1 class="header-title">Hallo, Organisation!</h1>
                 <p class="header-subtitle">Erstelle schnell und einfach dein neues Event :)</p>
             </div>
-            
+
             <div class="event-card">
                 <div class="event-image-wrapper">
                     <img src="assets/chess-event.jpg" alt="Schachturnier" class="event-image">
@@ -47,11 +46,27 @@
                 <div class="event-details">
                     <h2>Schachturnier</h2>
                     <p>Kurzer, aussagekräftiger Beschreibungstext deiner Veranstaltung.</p>
-                    <div class="event-meta">
-                        <span>📍 Veranstaltungsort</span>
-                        <span>📅 Datum</span>
-                        <span>⏰ Uhrzeit</span>
-                    </div>
+                    <form id="event-form">
+                        <div class="form-group">
+                            <label for="title">Titel:</label>
+                            <input type="text" id="title" name="title" placeholder="Titel des Events">
+                        </div>
+                        <div class="form-group">
+                            <label for="orga_id">Orga-ID:</label>
+                            <input type="text" id="orga_id" name="orga_id" placeholder="Organisations-ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Beschreibung:</label>
+                            <textarea id="content" name="content" placeholder="Beschreibung des Events"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Kategorie zuordnen:</label>
+                            <select id="category" name="category">
+                                <option value="" disabled selected>Select a category</option>
+                            </select>
+                        </div>
+                        <button id="create-event-button" type="submit">Event erstellen!</button>
+                    </form>
                 </div>
             </div>
         </section>

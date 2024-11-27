@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: category
         };
 
-        fetch('/create_post', {
+        fetch('/create_event', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
