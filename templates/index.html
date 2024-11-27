@@ -4,62 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUCI</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/background.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Header Styling */
+        .navbar-custom {
+            background-color: #FFDF64 !important;
+            height: 8vh;
+        }
+
+        /* Fullscreen Container */
+        .full-screen-container {
+            background-image: url('../static/assets/index_background.jpg');
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: row;
+            height: 90vh;
+            width: 100%;
+            padding-top: 8vh;
+            box-sizing: border-box;
+        }
+
+        /* MUCI Überschrift */
+        .heading {
+            font-size: 70px;
+            position: absolute;
+            top: 17%;
+            left: 14%;
+        }
+
+        .heading-small {
+            padding-top: 6.5%;
+            position: absolute;
+            top: 17%;
+            left: 14%;
+            font-size: 20px; /* Optional: Schriftgröße für kleinere Überschrift */
+        }
+
+        /* Rechter Container */
+        .right-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding-right: 10%;
+            flex-direction: column; /* Flexbox auf Column umstellen */
+
+        }
+
+        /* Description Text */
+        .description-text {
+            font-size: 15px;
+            max-width: 40%;
+        }
+
+        /* Button Styling */
+        .btn-custom {
+            background-color: #FFDF64;
+            color: #FFFFFF;
+            border: none;
+            padding: 8px 18px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 7%;
+
+        }
+
+        .btn-custom:hover {
+            background-color: #E0C13A; /* Etwas dunklerer Farbton bei Hover */
+        }
+
+
+        /* Footer Styling */
+        .custom-footer {
+            background-color: #FFDF64;
+            height: 10vh;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">MUCI.</div>
-            <div class="burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav id="nav-menu">
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="user.html">Erstelle Events</a></li>
-                    <li><a href="social.html">Sozial</a></li>
-                    <li><a href="city.html">Stadt</a></li>
-                    <li class="highlight"><a href="login.html">Anmelden</a></li>
-                    <li class="highlight"><a href="register.html">Registrieren</a></li>
-                    <li><a href="logout.html">Abmelden</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <section class="about-section">
-            <h1>MUCI</h1>
-            <h2>irgendwas aufmunterndes.</h2>
-            <div class="about-content">
-                    <p>
-                        Dein Alltag, deine Stadt, dein Netzwerk: MUCI macht es einfach, echte Verbindungen zu knüpfen. 
-                        Entdecke Veranstaltungen, die genau zu dir passen – unkompliziert, spontan und persönlich. 
-                        Gemeinsam gegen Einsamkeit – für mehr Begegnungen und weniger Barrieren.
-                    </p>
-                    <button class="cta-button">Sei dabei!</button>
-            </div>
-        </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p class="logo">MUCI.</p>
-            <ul class="footer-links">
-                <li><a href="impressum.html">Impressum</a></li>
-                <li><a href="#">Datenschutz</a></li>
-                <li><a href="#">Kontakt</a></li>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-custom">
+    <div class="container">
+        <a class="navbar-brand" href="#">MUCI</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Events erstellen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Social Feed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Stadt München</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrieren</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
             </ul>
-            <div class="social-links">
-                <a href="#">Instagram |</a>
-                <a href="#">Facebook |</a>
-                <a href="#">X |</a>
-            </div>
         </div>
-    </footer>
-    <script src="../static/burger_menu.js"></script>
+    </div>
+</nav>
+
+<!-- Großer Container -->
+<div class="full-screen-container">
+    <h1 class="heading">MUCI</h1>
+    <h2 class="heading-small">irgendwas aufmunterndes.</h2>
+
+    <!-- Rechter Container -->
+    <div class="right-container">
+        <!-- Beschreibung Text -->
+        <p class="description-text">
+            Dein Alltag, deine Stadt, dein Netzwerk: MUCI macht es einfach, echte Verbindungen zu knüpfen.
+            Entdecke Veranstaltungen, die genau zu dir passen – unkompliziert, spontan und persönlich.
+            Gemeinsam gegen Einsamkeit – für mehr Begegnungen und weniger Barrieren.
+        </p>
+        <button class="btn-custom" onclick="window.location.href='/register_user.html'">Jetzt Mitmachen</button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="custom-footer text-white">
+    <p>&copy; 2024 Meine Bootstrap-Seite. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script src="../static/burger_menu.js"></script>
 </body>
 </html>
