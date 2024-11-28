@@ -4,7 +4,7 @@ from .create_event_routes import create_event_routes
 from .city_routes import city_routes
 from .orga_admin_routes import orga_admin_routes
 from .user_logging_routes import user_logging_routes
-
+from .events_routes import event_routes
 
 
 def register_routes(app):
@@ -14,6 +14,8 @@ def register_routes(app):
     app.register_blueprint(city_routes)
     app.register_blueprint(orga_admin_routes)
     app.register_blueprint(user_logging_routes)
+    app.register_blueprint(event_routes)
+
 
 
 
